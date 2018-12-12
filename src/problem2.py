@@ -3,10 +3,11 @@ PRACTICE Exam 1, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Grant Stewart.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
+import math
 
 ###############################################################################
 # Students:
@@ -102,8 +103,21 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    line=rg.Line(rectangle.get_upper_right_corner(),rectangle.get_lower_left_corner())
+    line.arrow = 'last'
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    circle.attach_to(window)
+    window.render()
+
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -173,8 +187,21 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+    rect.attach_to(win)
+    win.render()
+    win.continue_on_mouse_click()
+    for k in range(n):
+        rectupx=rect.get_upper_left_corner().x - (k*delta)
+        rectupy= rect.get_upper_left_corner().y - (k*delta)
+        #it is changeing by 2*delta as both the upper and lower areasare changeing by delta
+        rectlowx = rect.get_lower_right_corner().x + (k*delta)
+        rectlowy = rect.get_lower_right_corner().y + (k * delta)
+
+        newrect=rg.Rectangle(rg.Point(rectupx,rectupy),rg.Point(rectlowx,rectlowy))
+        newrect.attach_to(win)
+    win.render()
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
